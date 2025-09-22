@@ -41,7 +41,7 @@ async function loadMessage(forDate) {
   revealBtn.addEventListener("click", async () => {
     box.classList.toggle("hidden");
     if (!box.classList.contains("hidden")) {
-      content.textContent = "Loading…";
+      content.textContent = "Loading….";
       content.textContent = await loadMessage(dateForPage);
     }
   });
