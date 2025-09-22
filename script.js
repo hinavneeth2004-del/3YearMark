@@ -1,5 +1,14 @@
-// Final day is Oct 1
+// Final day is Oct 1 (midnight IST)
 const TARGET_DATE = new Date("2025-10-01T00:00:00");
+
+// Helper: get today's date in IST (midnight)
+function todayInIST() {
+  const nowUTC = Date.now();
+  const istOffsetMs = 330 * 60 * 1000; // +5h30m
+  const nowIST = new Date(nowUTC + istOffsetMs);
+  // Return midnight IST for that day
+  return new Date(nowIST.getUTCFullYear(), nowIST.getUTCMonth(), nowIST.getUTCDate());
+}
 
 // Read ?d=YYYY-MM-DD from the URL
 function getDateFromQuery() {
@@ -11,8 +20,8 @@ function getDateFromQuery() {
   return new Date(y, m - 1, day);
 }
 
-// Days (ceil) between two dates at midnight
-function daysUntil(toDate, fromDate) {
+// Days (ceil) between two dates, counted at IST midnight
+function daysUntilIST(toDate, fromDate) {
   const a = new Date(toDate); a.setHours(0,0,0,0);
   const b = new Date(fromDate); b.setHours(0,0,0,0);
   return Math.ceil((a - b) / (1000 * 60 * 60 * 24));
@@ -30,12 +39,14 @@ async function loadMessage(forDate) {
 }
 
 (async function init() {
-  const dateForPage = getDateFromQuery() || new Date();
+  // Use query param if present, else today's IST date
+  const dateForPage = getDateFromQuery() || todayInIST();
   const revealBtn = document.getElementById("revealBtn");
   const box = document.getElementById("messageBox");
   const content = document.getElementById("messageContent");
 
-  const days = daysUntil(TARGET_DATE, dateForPage);
+  // Countdown in IST
+  const days = daysUntilIST(TARGET_DATE, dateForPage);
   revealBtn.textContent = days <= 0 ? "Open" : `T-${days}`;
 
   revealBtn.addEventListener("click", async () => {
