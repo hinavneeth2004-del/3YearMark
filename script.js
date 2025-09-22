@@ -10,6 +10,19 @@ function todayInIST() {
   return new Date(nowIST.getUTCFullYear(), nowIST.getUTCMonth(), nowIST.getUTCDate());
 }
 
+// Format YYYY-MM-DD in IST
+function ymdIST(d) {
+  const utcMs = d.getTime();
+  const istOffsetMs = 330 * 60 * 1000; // +5h30m
+  const istDate = new Date(utcMs + istOffsetMs);
+
+  const y = istDate.getUTCFullYear();
+  const m = String(istDate.getUTCMonth() + 1).padStart(2, "0");
+  const day = String(istDate.getUTCDate()).padStart(2, "0");
+
+  return `${y}-${m}-${day}`;
+}
+
 // Read ?d=YYYY-MM-DD from the URL
 function getDateFromQuery() {
   const params = new URLSearchParams(window.location.search);
@@ -31,7 +44,7 @@ async function loadMessage(forDate) {
   try {
     const resp = await fetch("messages.json", { cache: "no-cache" });
     const all = await resp.json();
-    const key = forDate.toISOString().slice(0,10); // YYYY-MM-DD
+    const key = ymdIST(forDate); // use IST date for lookup
     return all[key] || "I haven’t written today’s note yet… but you’re always on my mind. 💛";
   } catch (e) {
     return "Couldn’t load the message right now. Try refreshing?";
