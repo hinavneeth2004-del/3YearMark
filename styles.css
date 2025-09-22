@@ -1,44 +1,61 @@
 * { box-sizing: border-box; }
 html, body { height: 100%; margin: 0; font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial; }
 
+body { background:#f3f4f6; } /* soft fallback */
 .bg {
   position: fixed; inset: 0;
-  background: url("ac95013c-5c9d-42b8-bde7-d0ba3bf168c5.jpeg") center/cover no-repeat;
+  background: url("assets/ac95013c-5c9d-42b8-bde7-d0ba3bf168c5.jpeg") center/cover no-repeat;
   filter: brightness(0.7);
   z-index: -1;
+  min-height: 100vh;
 }
 
 main.card {
   min-height: 100%;
   display: grid;
-  place-items: center;
+  place-items: start center;
   text-align: center;
-  padding: 2rem;
+  padding: 2rem 1rem 4rem;
+  gap: 1rem;
 }
 
-.card > * { max-width: 720px; color: #fff; }
+.card > * { max-width: 860px; color: #fff; margin-inline: auto; }
 
 h1 {
   font-size: clamp(2rem, 4vw, 3rem);
-  margin: 0 0 1rem;
+  margin: 0;
   text-shadow: 0 2px 12px rgba(0,0,0,0.4);
 }
 
+/* pills timeline */
+.pills {
+  display: flex; flex-wrap: wrap; justify-content: center;
+  gap: 8px; margin-top: .5rem;
+}
+.pills button {
+  padding: .45rem .8rem; border-radius: 999px; border: 1px solid rgba(255,255,255,.35);
+  background: rgba(0,0,0,.35);
+  color: #fff; cursor: pointer; font-size: .95rem;
+  backdrop-filter: blur(6px);
+}
+.pills button.active { background: rgba(255,255,255,.22); border-color: rgba(255,255,255,.6); }
+
 .cta {
-  margin: 0.5rem auto 1.5rem;
+  margin: .25rem auto .75rem;
   padding: 0.9rem 1.2rem;
   font-size: 1.2rem;
-  border: 0; border-radius: 998px;
-  background: rgba(255,255,255,0.18);
+  border: 1px solid rgba(255,255,255,0.4);
+  border-radius: 999px;
+  background: rgba(0,0,0,0.6);
   backdrop-filter: blur(6px);
   color: #fff;
   cursor: pointer;
   transition: transform 0.08s ease, background 0.2s ease;
 }
-.cta:hover { transform: translateY(-1px); background: rgba(255,255,255,0.24); }
+.cta:hover { transform: translateY(-1px); background: rgba(0,0,0,0.7); }
 
 .message {
-  width: min(90vw, 720px);
+  width: min(92vw, 860px);
   padding: 1.25rem 1.1rem;
   border-radius: 18px;
   background: rgba(0,0,0,0.45);
@@ -50,6 +67,6 @@ h1 {
 .hidden { display: none; }
 
 #messageContent {
-  white-space: pre-wrap; /* preserves line breaks */
+  white-space: pre-wrap;
   font-size: 1.05rem;
 }
