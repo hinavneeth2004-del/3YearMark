@@ -1,4 +1,5 @@
 // Final day is Oct 1
+
 const TARGET_DATE = new Date("2025-10-01T00:00:00");
 
 // Read ?d=YYYY-MM-DD from the URL

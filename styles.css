@@ -3,7 +3,7 @@ html, body { height: 100%; margin: 0; font-family: ui-sans-serif, system-ui, -ap
 
 .bg {
   position: fixed; inset: 0;
-  background: url("assets/ac95013c-5c9d-42b8-bde7-d0ba3bf168c5.jpeg") center/cover no-repeat;
+  background: url("ac95013c-5c9d-42b8-bde7-d0ba3bf168c5.jpeg") center/cover no-repeat;
   filter: brightness(0.7);
   z-index: -1;
 }
