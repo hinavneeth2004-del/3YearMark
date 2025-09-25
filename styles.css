@@ -53,3 +53,64 @@ h1 {
   white-space: pre-wrap; /* preserves line breaks */
   font-size: 1.05rem;
 }
+/* ===== Modal / Overlay ===== */
+.overlay {
+  position: fixed; inset: 0;
+  background: rgba(0,0,0,0.55);
+  display: grid; place-items: center;
+  z-index: 50;
+}
+.modal {
+  width: min(92vw, 520px);
+  background: rgba(15,15,15,0.9);
+  color: #fff;
+  border: 1px solid rgba(255,255,255,0.2);
+  border-radius: 18px;
+  padding: 1.2rem 1.1rem 1rem;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+  text-align: left;
+}
+.modal-title { margin: 0 0 .4rem; font-size: 1.25rem; }
+.modal-q { margin: 0 0 .8rem; opacity: .95; line-height: 1.5; }
+.modal-input {
+  width: 100%;
+  padding: .75rem .9rem;
+  border-radius: 12px;
+  border: 1px solid rgba(255,255,255,0.25);
+  background: rgba(0,0,0,0.35);
+  color: #fff;
+  font-size: 1rem;
+  outline: none;
+}
+.modal-input::placeholder { color: rgba(255,255,255,0.6); }
+.modal-actions { display: flex; gap: .6rem; justify-content: flex-end; margin-top: .8rem; }
+.btn {
+  padding: .6rem 1rem;
+  border-radius: 999px;
+  border: 1px solid rgba(255,255,255,0.35);
+  background: rgba(255,255,255,0.15);
+  color: #fff; cursor: pointer;
+}
+.btn:hover { background: rgba(255,255,255,0.25); }
+.btn.ghost { background: transparent; }
+
+/* feedback */
+.modal-feedback { height: 1.2rem; margin: .5rem 0 0; color: #ffb3b3; font-size: .95rem; }
+
+/* ===== Hearts animation ===== */
+.hearts-layer {
+  position: fixed; inset: 0; pointer-events: none; z-index: 40;
+}
+.heart {
+  position: absolute;
+  font-size: 22px;
+  animation: floatUp 2.8s linear forwards;
+  filter: drop-shadow(0 2px 6px rgba(0,0,0,0.3));
+}
+@keyframes floatUp {
+  0%   { transform: translateY(0) scale(0.8); opacity: 0; }
+  10%  { opacity: 1; }
+  90%  { opacity: 1; }
+  100% { transform: translateY(-140vh) scale(1.2); opacity: 0; }
+}
